@@ -23,11 +23,6 @@ return {
 				markdown = { "prettier" },
 				graphql = { "prettier" },
 			},
-			format_on_save = {
-				lsp_fallback = true,
-				async = true,
-				timeout_ms = 1000,
-			},
 			-- LazyVim will merge the options you set here with builtin formatters.
 			-- You can also define any custom formatters here.
 			---@type table<string, conform.FormatterConfigOverride|fun(bufnr: integer): nil|conform.FormatterConfigOverride>
