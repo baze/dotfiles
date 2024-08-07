@@ -1,0 +1,146 @@
+# +----+
+# | ls |
+# +----+
+
+alias ls='ls --color'
+alias l='ls -l'
+alias ll='ls -lahF'
+alias lls='ls -lahFtr'
+alias la='ls -A'
+alias lc='ls -CF'
+
+# +------+
+# | wget |
+# +------+
+alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
+
+# +----+
+# | cp |
+# +----+
+
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias rm='rm -iv'
+alias la='ls -alh'
+
+# +--------+
+# | Neovim |
+# +--------+
+
+alias vim='nvim'
+alias vi='nvim'
+alias svim='sudoedit'
+alias nvimc='rm -I $VIMCONFIG/swap/*'             # clean nvim swap file
+alias nvimcu='rm -I $VIMCONFIG/undo/*'            # clean the vim undo
+alias nviml='nvim -w $VIMCONFIG/vimlog "$@"'      # log the keystrokes 
+alias nvimd='nvim --noplugin -u NONE'             # launch nvim without any plugin or config (nvim debug)
+alias lvim='\vim -c "set nowrap|syntax off"'        # fast vim for big files / big oneliner
+
+alias c=clear
+
+alias reload-zsh="source ~/.zshrc"
+alias edit-zsh="nvim ~/.zshrc"
+
+# ---- Eza (better ls) -----
+alias ls="eza --icons=always"
+
+# ---- Zoxide (better cd) ----
+eval "$(zoxide init zsh)"
+
+alias cd="z"
+
+alias editHosts="sudo vim /etc/hosts"
+
+alias vup="vagrant up"
+alias vu="vup"
+alias vhalt="vagrant halt"
+alias vh="vhalt"
+alias vssh="vagrant ssh"
+alias vss="vssh"
+alias vreload="vagrant reload"
+alias vr="vreload"
+
+alias updateBrew="brew update && brew upgrade"
+alias updateComposer="composer selfupdate"
+alias updateNode="sudo npm update -g"
+alias updateAll="updateBrew && updateComposer && updateNode" 
+
+alias phpunit="phpunit --colors"
+
+# +-----+
+# | Git |
+# +-----+
+
+alias gs='git status'
+alias gss='git status -s'
+alias ga='git add'
+alias gp='git push'
+alias gpraise='git blame'
+alias gpo='git push origin'
+alias gpof='git push origin --force-with-lease'
+alias gpofn='git push origin --force-with-lease --no-verify'
+alias gpt='git push --tag'
+alias gtd='git tag --delete'
+alias gtdr='git tag --delete origin'
+alias grb='git branch -r'                                                                           # display remote branch
+alias gplo='git pull origin'
+alias gb='git branch '
+alias gc='git commit'
+alias gd='git diff'
+alias gco='git checkout '
+alias gl='git log --oneline'
+alias gr='git remote'
+alias grs='git remote show'
+alias glol='git log --graph --abbrev-commit --oneline --decorate'
+alias gclean="git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d" # Delete local branch merged with master
+alias gblog="git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:red)%(refname:short)%(color:reset) - %(color:yellow)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:blue)%(committerdate:relative)%(color:reset))'"                                                             # git log for each branches
+alias gsub="git submodule update --remote"                                                        # pull submodules
+alias gj="git-jump"                                                                               # Open in vim quickfix list files of interest (git diff, merged...)
+
+alias dif="git diff --no-index"                                                                   # Diff two files even if not in git repo! Can add -w (don't diff whitespaces)
+
+# +------+
+# | tmux |
+# +------+
+
+alias tmuxk='tmux kill-session -t'
+alias tmuxa='tmux attach -t'
+alias tmuxl='tmux list-sessions'
+
+alias homestead='function __homestead() { (cd ~/Homestead && vagrant $*); unset -f __homestead; }; __homestead'
+
+alias hu="homestead up"
+alias hs="homestead ssh"
+alias hh="homestead halt"
+
+function setupDnsmasq {
+    # Update homebrew installation
+    brew up
+
+    # Install dnsmasq
+    brew install dnsmasq
+
+    # Copy default configuration file
+    cp $(brew list dnsmasq | grep /dnsmasq.conf$) /usr/local/etc/dnsmasq.conf
+
+    # Copy the daemon configuration file into place
+    sudo cp $(brew list dnsmasq | grep /homebrew.mxcl.dnsmasq.plist$) /Library/LaunchDaemons/
+
+    # Start Dnsmasq automatically
+    sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
+}
+
+function restartDnsmasq {
+    sudo launchctl stop homebrew.mxcl.dnsmasq
+    
+    sudo launchctl unload -w /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
+    sudo launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
+
+    sudo launchctl start homebrew.mxcl.dnsmasq
+}
+
+function editDnsmasqConfig {
+     sudo vim /usr/local/etc/dnsmasq.conf
+}
+
+alias sshTunnel="ssh -R 9003:localhost:9003 zewotherm@bm.dev.zwtm.de"
