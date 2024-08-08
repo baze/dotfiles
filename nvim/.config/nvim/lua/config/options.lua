@@ -10,7 +10,7 @@ vim.opt.relativenumber = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+vim.opt.expandtab = false
 
 vim.opt.smartindent = true
 
@@ -37,3 +37,17 @@ vim.opt.cursorcolumn = true
 vim.opt.cursorline = true
 
 vim.g.lazyvim_php_lsp = "intelephense"
+
+-- Set EOL to \n (Unix-style)
+vim.opt.fileformat = "unix"
+
+-- Show hidden whitespace characters
+vim.opt.list = false
+vim.opt.listchars = {
+	space = "·", -- Show spaces as a middle dot
+	tab = "→ ", -- Show tabs as an arrow followed by a space
+	trail = "•", -- Show trailing spaces as a bullet
+	extends = "❯", -- Show character when the line extends beyond the window
+	precedes = "❮", -- Show character when there is text before the start of the window
+	nbsp = "␣", -- Show non-breaking spaces as a symbol
+}
