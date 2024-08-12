@@ -5,23 +5,23 @@ return {
 		---@type conform.setupOpts
 		local opts = {
 			formatters_by_ft = {
-				lua = { "stylua" },
-				fish = { "fish_indent" },
-				sh = { "shfmt" },
-				php = { "pint" },
-				blade = { "blade-formatter", "rustywind" },
-				python = { "isort", "black" },
 				javascript = { "prettier" },
 				typescript = { "prettier" },
 				javascriptreact = { "prettier" },
 				typescriptreact = { "prettier" },
 				svelte = { "prettier" },
 				css = { "prettier" },
+				scss = { "prettier" },
 				html = { "prettier" },
+				vue = { "prettier" },
 				json = { "prettier" },
 				yaml = { "prettier" },
 				markdown = { "prettier" },
 				graphql = { "prettier" },
+				liquid = { "prettier" },
+				lua = { "stylua" },
+				php = { "pint" },
+				blade = { "blade-formatter" },
 			},
 			-- LazyVim will merge the options you set here with builtin formatters.
 			-- You can also define any custom formatters here.
