@@ -8,8 +8,8 @@ config.color_scheme = "Catppuccin Frappe"
 
 -- config.font = wezterm.font("MesloLGL Nerd Font Mono")
 config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
-config.font_size = 16
-config.line_height = 1.0
+config.font_size = 14
+config.line_height = 1.2
 
 config.enable_tab_bar = false
 
