@@ -29,6 +29,8 @@ require("lazy").setup({
 		{ import = "lazyvim.plugins.extras.coding.copilot" },
 		{ import = "lazyvim.plugins.extras.coding.mini-comment" },
 		{ import = "lazyvim.plugins.extras.dap.core" },
+		{ import = "lazyvim.plugins.extras.editor.fzf" },
+		{ import = "lazyvim.plugins.extras.editor.harpoon2" },
 		-- import/override with your plugins
 		{ import = "plugins" },
 	},
