@@ -2,7 +2,7 @@ return {
 	"williamboman/mason.nvim",
 	opts = {
 		ensure_installed = {
-			"emmet-ls",
+			"emmet-language-server",
 			"eslint_d",
 			"html-lsp",
 			"intelephense",
