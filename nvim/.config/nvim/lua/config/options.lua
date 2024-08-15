@@ -53,3 +53,8 @@ vim.opt.listchars = {
 	precedes = "❮", -- Show character when there is text before the start of the window
 	nbsp = "␣", -- Show non-breaking spaces as a symbol
 }
+
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
+vim.opt.clipboard = "unnamedplus"
