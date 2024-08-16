@@ -7,6 +7,7 @@ return {
 			"isort",
 			"eslint_d",
 			"html-lsp",
+			"css-lsp",
 			"intelephense",
 			"chrome-debug-adapter",
 			"php-debug-adapter",
