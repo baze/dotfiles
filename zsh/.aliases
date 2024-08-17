@@ -32,7 +32,7 @@ alias vi='nvim'
 alias svim='sudoedit'
 alias nvimc='rm -I $VIMCONFIG/swap/*'             # clean nvim swap file
 alias nvimcu='rm -I $VIMCONFIG/undo/*'            # clean the vim undo
-alias nviml='nvim -w $VIMCONFIG/vimlog "$@"'      # log the keystrokes 
+alias nviml='nvim -w $VIMCONFIG/vimlog "$@"'      # log the keystrokes
 alias nvimd='nvim --noplugin -u NONE'             # launch nvim without any plugin or config (nvim debug)
 alias lvim='\vim -c "set nowrap|syntax off"'        # fast vim for big files / big oneliner
 
@@ -63,7 +63,7 @@ alias vr="vreload"
 alias updateBrew="brew update && brew upgrade"
 alias updateComposer="composer selfupdate"
 alias updateNode="sudo npm update -g"
-alias updateAll="updateBrew && updateComposer && updateNode" 
+alias updateAll="updateBrew && updateComposer && updateNode"
 
 alias phpunit="phpunit --colors"
 
@@ -107,6 +107,8 @@ alias tmuxk='tmux kill-session -t'
 alias tmuxa='tmux attach -t'
 alias tmuxl='tmux list-sessions'
 
+alias yz='yazi'
+
 alias homestead='function __homestead() { (cd ~/Homestead && vagrant $*); unset -f __homestead; }; __homestead'
 
 alias hu="homestead up"
@@ -132,7 +134,7 @@ function setupDnsmasq {
 
 function restartDnsmasq {
     sudo launchctl stop homebrew.mxcl.dnsmasq
-    
+
     sudo launchctl unload -w /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
     sudo launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
 

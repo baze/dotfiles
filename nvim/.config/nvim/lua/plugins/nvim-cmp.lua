@@ -3,7 +3,8 @@ return {
 	event = "InsertEnter",
 	dependencies = {
 		"hrsh7th/cmp-buffer", -- source for text in buffer
-		"hrsh7th/cmp-path", -- source for file system paths
+		"hrsh7th/cmp-path", -- soource for file system paths
+		"hrsh7th/cmp-nvim-lsp",
 		{
 			"L3MON4D3/LuaSnip",
 			-- follow latest release.
@@ -46,11 +47,11 @@ return {
 			}),
 			-- sources for autocompletion
 			sources = cmp.config.sources({
-				{ name = "codeium" },
-				{ name = "nvim_lsp" },
-				{ name = "luasnip" }, -- snippets
-				{ name = "buffer" }, -- text within current buffer
 				{ name = "path" }, -- file system paths
+				{ name = "nvim_lsp", keyword_length = 1 },
+				{ name = "buffer", keyword_length = 3 }, -- text within current buffer
+				{ name = "luasnip", keyword_length = 2 }, -- snippets
+				{ name = "codeium" },
 			}),
 
 			-- configure lspkind for vs-code like pictograms in completion menu
@@ -62,6 +63,7 @@ return {
 					ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
 					show_labelDetails = true, -- show labelDetails in menu. Disabled by default
 				}),
+				fields = { "menu", "abbr", "kind" },
 			},
 		})
 	end,
