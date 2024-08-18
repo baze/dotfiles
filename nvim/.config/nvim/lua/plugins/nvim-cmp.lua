@@ -28,7 +28,7 @@ return {
 
 		cmp.setup({
 			completion = {
-				completeopt = "menu,menuone,preview",
+				completeopt = "menu,menuone,preview,noselect",
 			},
 			snippet = { -- configure how nvim-cmp interacts with snippet engine
 				expand = function(args)
@@ -42,8 +42,19 @@ return {
 				["<C-f>"] = cmp.mapping.scroll_docs(4),
 				["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
 				["<C-e>"] = cmp.mapping.abort(), -- close completion window
-				["<CR>"] = cmp.mapping.confirm(),
-				["<Tab>"] = cmp.mapping.confirm(),
+				["<CR>"] = cmp.mapping.confirm({ select = true }),
+				["<Tab>"] = cmp.mapping(function(fallback)
+					-- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
+					if cmp.visible() then
+						local entry = cmp.get_selected_entry()
+						if not entry then
+							cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+						end
+						cmp.confirm()
+					else
+						fallback()
+					end
+				end, { "i", "s", "c" }),
 			}),
 			-- sources for autocompletion
 			sources = cmp.config.sources({
@@ -61,7 +72,7 @@ return {
 					maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
 					-- maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
 					ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
-					show_labelDetails = true, -- show labelDetails in menu. Disabled by default
+					show_labelDetails = false, -- show labelDetails in menu. Disabled by default
 				}),
 				fields = { "menu", "abbr", "kind" },
 			},
