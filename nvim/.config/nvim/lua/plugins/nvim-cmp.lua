@@ -24,8 +24,8 @@ return {
 		local lspkind = require("lspkind")
 
 		local ELLIPSIS_CHAR = "…"
-		local MAX_LABEL_WIDTH = 20
 		local MIN_LABEL_WIDTH = 20
+		local MAX_LABEL_WIDTH = 30
 
 		-- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
 		require("luasnip.loaders.from_vscode").lazy_load()
