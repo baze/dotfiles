@@ -1,3 +1,5 @@
+; extends
+
 ; Blade PHP attributes
 ; <x-foo :bar="$baz" />
 (element
