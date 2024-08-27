@@ -6,13 +6,13 @@ local config = wezterm.config_builder()
 
 config.color_scheme = "Catppuccin Frappe"
 
--- config.font = wezterm.font("MesloLGL Nerd Font Mono")
 config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
 config.font_size = 14
 config.line_height = 1.2
 
+config.automatically_reload_config = true
 config.enable_tab_bar = false
-
+config.window_close_confirmation = "NeverPrompt"
 config.window_decorations = "TITLE | RESIZE"
 
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
