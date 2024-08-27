@@ -63,8 +63,8 @@ return {
 				{ name = "nvim_lsp", keyword_length = 1 },
 				{ name = "buffer", keyword_length = 3 },
 				{ name = "luasnip", keyword_length = 2 },
-				-- { name = "codeium" },
-				-- { name = "copilot" },
+				{ name = "codeium" },
+				{ name = "copilot" },
 			}),
 			-- configure lspkind for vs-code like pictograms in completion menu
 			formatting = {
@@ -78,7 +78,8 @@ return {
 				-- fields = { "kind", "abbr", "menu" },
 				fields = { "abbr", "kind", "menu" },
 				format = function(entry, vim_item)
-					vim_item.kind = lspkind.presets.default[vim_item.kind] .. " " .. vim_item.kind
+					local icon = lspkind.presets.default[vim_item.kind]
+					vim_item.kind = icon and (icon .. " " .. vim_item.kind) or "  " .. vim_item.kind
 
 					-- Define menu shorthand for different completion sources.
 					local menu_icon = {

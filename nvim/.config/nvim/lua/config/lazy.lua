@@ -28,9 +28,10 @@ require("lazy").setup({
 		{ import = "lazyvim.plugins.extras.coding.luasnip" },
 		{ import = "lazyvim.plugins.extras.editor.fzf" },
 		{ import = "lazyvim.plugins.extras.editor.harpoon2" },
-		-- { import = "lazyvim.plugins.extras.coding.codeium" },
-		{ import = "lazyvim.plugins.extras.coding.copilot" },
 		{ import = "lazyvim.plugins.extras.coding.mini-comment" },
+		{ import = "lazyvim.plugins.extras.editor.outline" },
+		{ import = "lazyvim.plugins.extras.coding.codeium" },
+		{ import = "lazyvim.plugins.extras.coding.copilot" },
 		{ import = "lazyvim.plugins.extras.dap.core" },
 		{ import = "lazyvim.plugins.extras.ui.mini-animate" },
 		-- import/override with your plugins
