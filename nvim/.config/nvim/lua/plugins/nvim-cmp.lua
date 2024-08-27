@@ -22,6 +22,7 @@ return {
 		local luasnip = require("luasnip")
 
 		local lspkind = require("lspkind")
+		lspkind.init({})
 
 		-- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
 		require("luasnip.loaders.from_vscode").lazy_load()
@@ -62,7 +63,8 @@ return {
 				{ name = "nvim_lsp", keyword_length = 1 },
 				{ name = "buffer", keyword_length = 3 },
 				{ name = "luasnip", keyword_length = 2 },
-				{ name = "codeium" },
+				-- { name = "codeium" },
+				-- { name = "copilot" },
 			}),
 			-- configure lspkind for vs-code like pictograms in completion menu
 			formatting = {
@@ -74,19 +76,24 @@ return {
 				-- 	show_labelDetails = true, -- show labelDetails in menu. Disabled by default
 				-- }),
 				-- fields = { "kind", "abbr", "menu" },
-				fields = { "abbr", "menu", "kind" },
-				format = function(entry, item)
-					-- item.kind = lspkind.presets.default[item.kind] or ""
+				fields = { "abbr", "kind", "menu" },
+				format = function(entry, vim_item)
+					vim_item.kind = lspkind.presets.default[vim_item.kind] .. " " .. vim_item.kind
+
 					-- Define menu shorthand for different completion sources.
 					local menu_icon = {
-						nvim_lsp = "NLSP",
-						nvim_lua = "NLUA",
-						luasnip = "LSNP",
-						buffer = "BUFF",
-						path = "PATH",
+						nvim_lsp = "[LSP]",
+						luasnip = "[LuaSnip]",
+						buffer = "[Buffer]",
+						path = "[Path]",
 					}
+
 					-- Set the menu "icon" to the shorthand for each completion source.
-					item.menu = menu_icon[entry.source.name]
+					vim_item.menu = menu_icon[entry.source.name] or ""
+
+					vim_item.dup = ({
+						nvim_lsp = 0,
+					})[entry.source.name] or 0
 
 					-- Set the fixed width of the completion menu to 60 characters.
 					-- fixed_width = 20
@@ -95,7 +102,7 @@ return {
 					fixed_width = fixed_width or false
 
 					-- Get the completion entry text shown in the completion window.
-					local content = item.abbr
+					local content = vim_item.abbr
 
 					-- Set the fixed completion window width.
 					if fixed_width then
@@ -114,11 +121,11 @@ return {
 					-- max content width. We subtract 3 from the max content width
 					-- to account for the "..." that will be appended to it.
 					if #content > max_content_width then
-						item.abbr = vim.fn.strcharpart(content, 0, max_content_width - 3) .. "..."
+						vim_item.abbr = vim.fn.strcharpart(content, 0, max_content_width - 3) .. "..."
 					else
-						item.abbr = content .. (" "):rep(max_content_width - #content)
+						vim_item.abbr = content .. (" "):rep(max_content_width - #content)
 					end
-					return item
+					return vim_item
 				end,
 			},
 			window = {
