@@ -44,14 +44,15 @@ vim.g.lazyvim_php_lsp = "intelephense"
 vim.opt.fileformat = "unix"
 
 -- Show hidden whitespace characters
-vim.opt.list = false
+vim.opt.list = true
 vim.opt.listchars = {
-	space = "·", -- Show spaces as a middle dot
+	-- space = "·", -- Show spaces as a middle dot
 	tab = "→ ", -- Show tabs as an arrow followed by a space
 	trail = "•", -- Show trailing spaces as a bullet
 	extends = "❯", -- Show character when the line extends beyond the window
 	precedes = "❮", -- Show character when there is text before the start of the window
 	nbsp = "␣", -- Show non-breaking spaces as a symbol
+	-- eol = "↵", -- Show EOL as a symbol
 }
 
 vim.opt.splitbelow = true
