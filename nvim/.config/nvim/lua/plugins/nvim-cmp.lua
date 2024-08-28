@@ -76,6 +76,8 @@ return {
 				-- 	show_labelDetails = true, -- show labelDetails in menu. Disabled by default
 				-- }),
 				-- fields = { "kind", "abbr", "menu" },
+
+				expandable_indicator = true,
 				fields = { "abbr", "kind", "menu" },
 				format = function(entry, vim_item)
 					local icon = lspkind.presets.default[vim_item.kind]
@@ -87,6 +89,8 @@ return {
 						luasnip = "[LuaSnip]",
 						buffer = "[Buffer]",
 						path = "[Path]",
+						copilot = "[Copilot]",
+						codeium = "[Codeium]",
 					}
 
 					-- Set the menu "icon" to the shorthand for each completion source.
@@ -94,6 +98,7 @@ return {
 
 					vim_item.dup = ({
 						nvim_lsp = 0,
+						luasnip = 0,
 					})[entry.source.name] or 0
 
 					-- Set the fixed width of the completion menu to 60 characters.
