@@ -7,10 +7,3 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*",
 	command = [[%s/\s\+$//e]],
 })
-
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-	pattern = "*.blade.php",
-	callback = function()
-		vim.bo.filetype = "php.html"
-	end,
-})
