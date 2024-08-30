@@ -7,7 +7,7 @@ local config = wezterm.config_builder()
 config.color_scheme = "Catppuccin Frappe"
 
 config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
-config.font_size = 14
+config.font_size = 13
 config.line_height = 1.2
 
 config.enable_tab_bar = false
@@ -39,7 +39,7 @@ config.send_composed_key_when_right_alt_is_pressed = false
 local function set_window_size_and_position(window)
 	local screen = wezterm.gui.screens().active
 	local ratio = 0.75
-	local width, height = screen.width * ratio / 1.5, screen.height * ratio
+	local width, height = screen.width * ratio / 1.4, screen.height * ratio
 	window:gui_window():set_inner_size(width, height)
 	window:gui_window():set_position((screen.width - width) / 2, (screen.height - height) / 2)
 end

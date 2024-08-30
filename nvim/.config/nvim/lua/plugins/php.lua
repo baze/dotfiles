@@ -25,8 +25,11 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		opts = function(_, opts)
 			vim.list_extend(opts.ensure_installed, {
-				"blade",
+				"html",
+				"php",
 				"php_only",
+				"bash",
+				"blade",
 			})
 		end,
 		config = function(_, opts)
