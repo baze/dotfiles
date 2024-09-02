@@ -38,8 +38,8 @@ config.send_composed_key_when_right_alt_is_pressed = false
 -- Function to set window size and position
 local function set_window_size_and_position(window)
 	local screen = wezterm.gui.screens().active
-	local ratio = 0.75
-	local width, height = screen.width * ratio / 1.4, screen.height * ratio
+	local ratio = 0.8
+	local width, height = screen.width * ratio / 1.2, screen.height * ratio
 	window:gui_window():set_inner_size(width, height)
 	window:gui_window():set_position((screen.width - width) / 2, (screen.height - height) / 2)
 end
