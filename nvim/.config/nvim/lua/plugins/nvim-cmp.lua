@@ -29,7 +29,7 @@ return {
 
 		cmp.setup({
 			completion = {
-				completeopt = "menu,menuone,preview",
+				completeopt = "menu,menuone,preview,noinsert",
 			},
 			snippet = { -- configure how nvim-cmp interacts with snippet engine
 				expand = function(args)
@@ -80,8 +80,8 @@ return {
 				expandable_indicator = true,
 				fields = { "abbr", "kind", "menu" },
 				format = function(entry, vim_item)
-					local icon = lspkind.presets.default[vim_item.kind]
-					vim_item.kind = icon and (icon .. " " .. vim_item.kind) or "  " .. vim_item.kind
+					-- local icon = lspkind.presets.default[vim_item.kind]
+					-- vim_item.kind = icon and (icon .. " " .. vim_item.kind) or "  " .. vim_item.kind
 
 					-- Define menu shorthand for different completion sources.
 					local menu_icon = {
