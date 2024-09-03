@@ -21,6 +21,13 @@ return {
 		},
 	},
 	{
+		-- Add neotest-pest plugin for running PHP tests.
+		-- A package is also available for PHPUnit if needed.
+		"nvim-neotest/neotest",
+		dependencies = { "V13Axel/neotest-pest" },
+		opts = { adapters = { "neotest-pest" } },
+	},
+	{
 		-- Add a Treesitter parser for Laravel Blade to provide Blade syntax highlighting.
 		"nvim-treesitter/nvim-treesitter",
 		opts = function(_, opts)
@@ -51,5 +58,14 @@ return {
 				filetype = "blade",
 			}
 		end,
+	},
+	{
+		-- Add the blade-nav.nvim plugin which provides Goto File capabilities
+		-- for Blade files.
+		"ricardoramirezr/blade-nav.nvim",
+		dependencies = {
+			"hrsh7th/nvim-cmp",
+		},
+		ft = { "blade", "php" },
 	},
 }
