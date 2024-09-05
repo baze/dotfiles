@@ -27,6 +27,14 @@ return {
 							["/var/www/zewotherm/configurator-api"] = "${workspaceFolder}",
 						},
 					},
+					{
+						type = "chrome",
+						request = "launch",
+						name = "Debug with Chrome",
+						url = "http://localhost:8080",
+						webRoot = "${workspaceFolder}/src",
+						sourceMaps = true,
+					},
 				}
 				require("mason-nvim-dap").default_setup(config) -- don't forget this!
 			end,
