@@ -80,8 +80,10 @@ return {
 				expandable_indicator = true,
 				fields = { "abbr", "kind", "menu" },
 				format = function(entry, vim_item)
-					-- local icon = lspkind.presets.default[vim_item.kind]
-					-- vim_item.kind = icon and (icon .. " " .. vim_item.kind) or "  " .. vim_item.kind
+					local icon = lspkind.presets.default[vim_item.kind]
+					if icon then
+						vim_item.kind = icon .. " " .. vim_item.kind
+					end
 
 					-- Define menu shorthand for different completion sources.
 					local menu_icon = {
