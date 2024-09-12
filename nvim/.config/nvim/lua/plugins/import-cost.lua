@@ -1,9 +1,7 @@
 return {
 	"barrett-ruth/import-cost.nvim",
-	-- opts = {
-	-- 	build = "sh install.sh npm",
-	-- 	-- if on windows
-	-- 	-- build = 'pwsh install.ps1 yarn',
-	-- 	config = true,
-	-- },
+	-- build = function()
+	-- 	vim.fn.system({ "sh", "install.sh", "yarn" })
+	-- end,
+	-- config = true,
 }
