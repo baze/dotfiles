@@ -49,6 +49,8 @@ eval "$(zoxide init zsh)"
 
 alias cd="z"
 
+alias cat="bat"
+
 alias editHosts="sudo vim /etc/hosts"
 
 alias vup="vagrant up"
