@@ -65,7 +65,7 @@ gpgconf --launch gpg-agent
 
 # completion using arrow keys (based on history)
 bindkey '^[[A' history-search-backward
-bindkey '^[[B' history-search-forward 
+bindkey '^[[B' history-search-forward
 
 zmodload zsh/complist
 bindkey -M menuselect 'h' vi-backward-char
@@ -78,3 +78,5 @@ export BAT_THEME="Catppuccin Macchiato"
 
 export EDITOR=nvim
 export VISUAL=nvim
+
+export PATH=./node_modules/.bin:$PATH
