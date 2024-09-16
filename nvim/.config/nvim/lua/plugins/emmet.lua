@@ -17,8 +17,6 @@ return {
 						"pug",
 						"typescriptreact",
 						"blade",
-						"php",
-						"vue",
 					},
 				},
 			},
