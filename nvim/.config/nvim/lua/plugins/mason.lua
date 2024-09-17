@@ -3,9 +3,7 @@ return {
 	opts = {
 		ensure_installed = {
 			"emmet-language-server",
-			"black",
-			"isort",
-			"eslint_d",
+			"eslint-lsp",
 			"html-lsp",
 			"css-lsp",
 			"intelephense",

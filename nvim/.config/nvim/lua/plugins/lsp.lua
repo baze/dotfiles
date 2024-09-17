@@ -6,7 +6,7 @@ return {
 			exclude = {},
 		},
 		codelens = {
-			enabled = true,
+			enabled = false,
 		},
 	},
 }

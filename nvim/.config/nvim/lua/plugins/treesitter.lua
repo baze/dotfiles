@@ -5,7 +5,6 @@ return {
 		ensure_installed = {
 			"html",
 			"css",
-			"vue",
 		},
 	},
 }

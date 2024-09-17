@@ -8,7 +8,6 @@ return {
 			javascriptreact = { "prettier" },
 			json = { "prettier" },
 			markdown = { "prettier" },
-			python = { "isort", "black" },
 			scss = { "prettier" },
 			svelte = { "prettier" },
 			typescript = { "prettier" },
