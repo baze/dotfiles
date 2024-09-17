@@ -5,6 +5,7 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
 config.color_scheme = "Catppuccin Frappe"
+-- config.color_scheme = "Kanagawa (Gogh)"
 
 config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
 config.font_size = 13
