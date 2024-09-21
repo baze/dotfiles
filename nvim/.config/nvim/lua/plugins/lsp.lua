@@ -3,10 +3,10 @@ return {
 	opts = {
 		inlay_hints = {
 			enabled = true,
-			exclude = {},
+			-- exclude = {},
 		},
-		codelens = {
-			enabled = false,
-		},
+		-- codelens = {
+		-- 	enabled = false,
+		-- },
 	},
 }
