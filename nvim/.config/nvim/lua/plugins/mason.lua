@@ -7,6 +7,7 @@ return {
 			"html-lsp",
 			"css-lsp",
 			"intelephense",
+			"chrome-debug-adapter",
 			"js-debug-adapter",
 			"php-debug-adapter",
 			"phpstan",
