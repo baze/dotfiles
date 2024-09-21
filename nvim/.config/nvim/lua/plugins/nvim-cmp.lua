@@ -18,5 +18,9 @@ return {
 				end
 			end, { "i", "s", "c" }),
 		})
+
+		opts.experimental = vim.tbl_extend("force", opts.experimental, {
+			ghost_text = false,
+		})
 	end,
 }
