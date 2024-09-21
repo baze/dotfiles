@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd("CursorHold", {
 		local opts = {
 			focusable = false,
 			close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-			border = "rounded",
+			-- border = "rounded",
 			source = "always",
 			prefix = " ",
 			scope = "cursor",
