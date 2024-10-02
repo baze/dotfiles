@@ -5,6 +5,7 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
 config.color_scheme = "Catppuccin Frappe"
+-- config.color_scheme = "Catppuccin Macchiato"
 -- config.color_scheme = "Kanagawa (Gogh)"
 
 config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
@@ -13,7 +14,11 @@ config.line_height = 1.2
 
 config.enable_tab_bar = false
 config.use_fancy_tab_bar = false
-config.window_decorations = "TITLE | RESIZE"
+-- config.window_decorations = "TITLE | RESIZE"
+config.window_decorations = "RESIZE"
+
+-- config.window_background_opacity = 0.95
+-- config.macos_window_background_blur = 10000
 
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 
