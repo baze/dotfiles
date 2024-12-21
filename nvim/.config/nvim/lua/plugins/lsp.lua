@@ -5,8 +5,5 @@ return {
 			enabled = true,
 			-- exclude = {},
 		},
-		-- codelens = {
-		-- 	enabled = false,
-		-- },
 	},
 }

@@ -4,30 +4,30 @@
     {
       "if" : {
         "device" : {
-          "category" : "mouse",
+          "serialNumber" : "7753F8D9F13E7B6D",
           "productID" : "0xb023",
           "vendorID" : "0x46d",
-          "serialNumber" : "7753F8D9F13E7B6D",
-          "productName" : "MX Master 3"
+          "productName" : "MX Master 3",
+          "category" : "mouse"
         }
       },
       "scrolling" : {
+        "speed" : 0,
         "acceleration" : {
           "horizontal" : 3,
           "vertical" : 1
         },
-        "distance" : {
-          "vertical" : "auto"
-        },
-        "speed" : 0,
         "reverse" : {
           "horizontal" : true
+        },
+        "distance" : {
+          "vertical" : "auto"
         }
       },
       "pointer" : {
-        "acceleration" : 0.5,
         "speed" : 0.08,
-        "disableAcceleration" : false
+        "disableAcceleration" : false,
+        "acceleration" : 0.5
       }
     },
     {
@@ -35,28 +35,48 @@
         "device" : {
           "productID" : "0x269",
           "productName" : "Magic Mouse",
-          "serialNumber" : "c4-0b-31-00-67-db",
           "category" : "mouse",
+          "serialNumber" : "c4-0b-31-00-67-db",
           "vendorID" : "0x4c"
         }
       },
       "pointer" : {
         "disableAcceleration" : false,
-        "acceleration" : 0.6875,
-        "speed" : 0
+        "speed" : 0,
+        "acceleration" : 0.6875
       }
     },
     {
       "if" : {
         "device" : {
-          "productName" : "Apple Internal Keyboard \/ Trackpad",
-          "vendorID" : "0x5ac",
+          "productID" : "0x341",
           "category" : "trackpad",
-          "productID" : "0x341"
+          "vendorID" : "0x5ac",
+          "productName" : "Apple Internal Keyboard \/ Trackpad"
         }
       },
       "scrolling" : {
         "reverse" : true
+      }
+    },
+    {
+      "pointer" : {
+        "speed" : 0.08,
+        "acceleration" : 0.5
+      },
+      "scrolling" : {
+        "reverse" : {
+          "horizontal" : true
+        }
+      },
+      "if" : {
+        "device" : {
+          "productName" : "MX Master 3S",
+          "vendorID" : "0x46d",
+          "serialNumber" : "67F5F1CE",
+          "category" : "mouse",
+          "productID" : "0xb034"
+        }
       }
     }
   ]
