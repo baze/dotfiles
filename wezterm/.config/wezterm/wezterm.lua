@@ -8,6 +8,7 @@ local config = wezterm.config_builder()
 config.color_scheme = "Catppuccin Macchiato"
 -- config.color_scheme = "Kanagawa (Gogh)"
 
+max_fps = 120
 config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
 config.font_size = 13
 config.line_height = 1.2

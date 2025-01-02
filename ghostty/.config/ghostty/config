@@ -1,1 +1,12 @@
 theme = catppuccin-macchiato
+font-size = 13
+adjust-cell-height = 20%
+window-width = 220
+window-height = 50
+window-decoration = true
+keybind = global:cmd+s=toggle_quick_terminal
+window-padding-balance = true
+window-save-state = always
+window-theme = dark
+macos-titlebar-style = transparent
+font-family = JetBrainsMono Nerd Font Mono
