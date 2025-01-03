@@ -10,3 +10,4 @@ window-save-state = always
 window-theme = dark
 macos-titlebar-style = transparent
 font-family = JetBrainsMono Nerd Font Mono
+macos-option-as-alt = left
