@@ -80,4 +80,4 @@ export EDITOR=nvim
 export VISUAL=nvim
 
 export PATH=./node_modules/.bin:$PATH
-export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
+# export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
