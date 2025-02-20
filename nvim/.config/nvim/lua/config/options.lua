@@ -61,3 +61,4 @@ vim.opt.splitright = true
 vim.opt.clipboard = "unnamedplus"
 
 vim.opt.virtualedit = "block"
+vim.g.lazyvim_picker = "snacks"

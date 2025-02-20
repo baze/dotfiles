@@ -6,13 +6,16 @@ return {
 		opts = {
 			flavour = "macchiato", -- latte, frappe, macchiato, mocha
 			transparent_background = false,
-			integrations = { blink_cmp = true },
 		},
+	},
+	{
+		"rebelot/kanagawa.nvim",
 	},
 	{
 		"LazyVim/LazyVim",
 		opts = {
 			colorscheme = "catppuccin",
+			-- colorscheme = "kanagawa",
 		},
 	},
 }

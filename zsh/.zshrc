@@ -36,7 +36,7 @@ fi
 
 # History
 HISTSIZE=5000
-HISTFILE=~/.zsh_history
+HISTFILE=$HOME/.zsh_history
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
 setopt appendhistory
@@ -81,3 +81,4 @@ export VISUAL=nvim
 
 export PATH=./node_modules/.bin:$PATH
 # export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
+export PATH=$HOME/bin:$PATH

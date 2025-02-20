@@ -151,3 +151,5 @@ function editDnsmasqConfig {
 }
 
 alias sshTunnel="ssh -R 9003:localhost:9003 zewotherm@bm.dev.zwtm.de"
+
+alias tms="tmux-sessionizer"
