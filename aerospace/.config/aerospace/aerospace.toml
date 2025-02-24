@@ -106,9 +106,9 @@ ctrl-shift-alt-2 = 'workspace 2'
 ctrl-shift-alt-3 = 'workspace 3'
 ctrl-shift-alt-4 = 'workspace 4'
 ctrl-shift-alt-5 = 'workspace 5'
-ctrl-shift-alt-p = 'workspace P'
+ctrl-shift-alt-6 = 'workspace 6'
+ctrl-shift-alt-9 = 'workspace 9'
 ctrl-shift-alt-x = 'workspace X'
-ctrl-shift-alt-y = 'workspace Y'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 ctrl-shift-alt-cmd-1 = 'move-node-to-workspace 1'
@@ -116,9 +116,9 @@ ctrl-shift-alt-cmd-2 = 'move-node-to-workspace 2'
 ctrl-shift-alt-cmd-3 = 'move-node-to-workspace 3'
 ctrl-shift-alt-cmd-4 = 'move-node-to-workspace 4'
 ctrl-shift-alt-cmd-5 = 'move-node-to-workspace 5'
-ctrl-shift-alt-cmd-p = 'move-node-to-workspace P'
+ctrl-shift-alt-cmd-6 = 'move-node-to-workspace 6'
+ctrl-shift-alt-cmd-9 = 'move-node-to-workspace 9'
 ctrl-shift-alt-cmd-x = 'move-node-to-workspace X'
-ctrl-shift-alt-cmd-y = 'move-node-to-workspace Y'
 
 ctrl-shift-alt-f = 'fullscreen'
 
@@ -133,12 +133,11 @@ ctrl-shift-alt-semicolon = 'mode service'
 ctrl-shift-alt-r = 'mode resize'
 
 [workspace-to-monitor-force-assignment]
-1 = 'main'
+1 = ['secondary', 'main']
 2 = 'main'
 3 = 'main'
 4 = ['secondary', 'main']
 5 = ['secondary', 'main']
-Y = ['secondary', 'main']
 
 [mode.resize.binding]
 h = 'resize width -50'
@@ -169,16 +168,16 @@ ctrl-shift-alt-k = ['join-with up', 'mode main']
 ctrl-shift-alt-l = ['join-with right', 'mode main']
 
 [[on-window-detected]]
+if.app-id = 'com.apple.Safari'
+run = "move-node-to-workspace 2"
+
+[[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
 run = "move-node-to-workspace 3"
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
-run = "move-node-to-workspace 2"
-
-[[on-window-detected]]
-if.app-id = 'com.apple.Safari'
-run = "move-node-to-workspace 2"
+run = "move-node-to-workspace 3"
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.teams2'
@@ -188,17 +187,21 @@ run = "move-node-to-workspace 4"
 if.app-id = 'com.apple.Mail'
 run = "move-node-to-workspace 5"
 
-# [[on-window-detected]]
-# if.app-id = 'com.fournova.Tower3'
-# run = "move-node-to-workspace U"
-#
-# [[on-window-detected]]
-# if.app-id = 'com.luckymarmot.Paw'
-# run = "move-node-to-workspace U"
+[[on-window-detected]]
+if.app-id = 'com.apple.Home'
+run = "move-node-to-workspace 6"
 
-# [[on-window-detected]]
-# if.app-id = 'com.tinyapp.TablePlus-setapp'
-# run = "move-node-to-workspace U"
+[[on-window-detected]]
+if.app-id = 'com.fournova.Tower3'
+run = "move-node-to-workspace 9"
+
+[[on-window-detected]]
+if.app-id = 'com.luckymarmot.Paw'
+run = "move-node-to-workspace 9"
+
+[[on-window-detected]]
+if.app-id = 'com.tinyapp.TablePlus-setapp'
+run = "move-node-to-workspace 9"
 
 [[on-window-detected]]
 if.app-id = 'com.liuliu.draw-things'
