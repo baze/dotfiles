@@ -82,3 +82,6 @@ export VISUAL=nvim
 export PATH=./node_modules/.bin:$PATH
 # export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
 export PATH=$HOME/bin:$PATH
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/b.martensen/.lmstudio/bin"

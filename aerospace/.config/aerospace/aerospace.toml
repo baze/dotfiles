@@ -184,7 +184,7 @@ if.app-id = 'com.microsoft.teams2'
 run = "move-node-to-workspace 4"
 
 [[on-window-detected]]
-if.app-id = 'com.apple.Mail'
+if.app-id = 'com.apple.mail'
 run = "move-node-to-workspace 5"
 
 [[on-window-detected]]
