@@ -12,10 +12,14 @@ return {
 		"rebelot/kanagawa.nvim",
 	},
 	{
+		"sainnhe/sonokai",
+	},
+	{
 		"LazyVim/LazyVim",
 		opts = {
 			colorscheme = "catppuccin",
 			-- colorscheme = "kanagawa",
+			-- colorscheme = "sonokai",
 		},
 	},
 }

@@ -1,24 +1,17 @@
-((text) @injection.content
-    (#not-has-ancestor? @injection.content "envoy")
-    (#set! injection.combined)
-    (#set! injection.language php))
+;; injections.scm
+;; Inject PHP inside Blade `@php ... @endphp` blocks
+((php_statement) @injection.content
+ (#set! injection.language "php"))
 
-; tree-sitter-comment injection
-; if available
-((comment) @injection.content
- (#set! injection.language comment))
-
-; could be bash or zsh
-; or whatever tree-sitter grammar you have.
-((text) @injection.content
-    (#has-ancestor? @injection.content "envoy")
-    (#set! injection.combined)
-    (#set! injection.language bash))
-
+;; Inject PHP inside Blade Echo Tags `{{ }}` and `{!! !!}`
 ((php_only) @injection.content
-    (#set! injection.language php_only))
+ (#set! injection.language "php"))
 
-((parameter) @injection.content
-    (#set! injection.include-children) ; You may need this, depending on your editor e.g Helix
-    (#set! injection.language php_only))
+;; Inject HTML inside Blade files
+((text) @injection.content
+ (#set! injection.language "html"))
 
+;; Inject JavaScript inside `<script>` blocks
+((text) @injection.content
+ (#set! injection.language "javascript")
+ (#has-ancestor? @injection.content "script"))
