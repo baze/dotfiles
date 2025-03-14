@@ -8,17 +8,24 @@ return {
 			transparent_background = false,
 		},
 	},
-	{
-		"rebelot/kanagawa.nvim",
-	},
-	{
-		"sainnhe/sonokai",
-	},
+	-- {
+	-- 	"rebelot/kanagawa.nvim",
+	-- 	opts = {
+	-- 		theme = "wave",
+	-- 	},
+	-- },
+	-- {
+	-- 	"sainnhe/sonokai",
+	-- },
+	-- {
+	-- 	"folke/tokyonight.nvim",
+	-- },
 	{
 		"LazyVim/LazyVim",
 		opts = {
 			colorscheme = "catppuccin",
 			-- colorscheme = "kanagawa",
+			-- colorscheme = "tokyonight",
 			-- colorscheme = "sonokai",
 		},
 	},
