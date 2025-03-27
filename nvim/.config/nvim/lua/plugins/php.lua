@@ -33,8 +33,6 @@ return {
 		opts = function(_, opts)
 			vim.list_extend(opts.ensure_installed, {
 				"html",
-				"css",
-				"php",
 				"php_only",
 				"blade",
 			})

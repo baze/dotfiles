@@ -20,6 +20,9 @@ return {
 	-- {
 	-- 	"folke/tokyonight.nvim",
 	-- },
+	-- {
+	-- 	"shaunsingh/nord.nvim",
+	-- },
 	{
 		"LazyVim/LazyVim",
 		opts = {
