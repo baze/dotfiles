@@ -8,6 +8,9 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
+# Source secrets
+[ -f ~/.zsh_secrets ] && source ~/.zsh_secrets
+
 # Load powerlevel10k theme
 zinit ice depth"1" # git clone depth
 
@@ -79,7 +82,7 @@ export BAT_THEME="Catppuccin Macchiato"
 export EDITOR=nvim
 export VISUAL=nvim
 
-export PATH=./node_modules/.bin:$PATH
+# export PATH=./node_modules/.bin:$PATH
 # export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
 export PATH=$HOME/bin:$PATH
 

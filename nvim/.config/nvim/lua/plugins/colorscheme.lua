@@ -23,6 +23,9 @@ return {
 	-- {
 	-- 	"shaunsingh/nord.nvim",
 	-- },
+	-- {
+	-- 	"loctvl842/monokai-pro.nvim",
+	-- },
 	{
 		"LazyVim/LazyVim",
 		opts = {
@@ -30,6 +33,7 @@ return {
 			-- colorscheme = "kanagawa",
 			-- colorscheme = "tokyonight",
 			-- colorscheme = "sonokai",
+			-- colorscheme = "monokai-pro",
 		},
 	},
 }

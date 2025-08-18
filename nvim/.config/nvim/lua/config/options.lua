@@ -63,13 +63,18 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.virtualedit = "block"
 vim.g.lazyvim_picker = "snacks"
 
-vim.diagnostic.config({
-  -- Use the default configuration
-  virtual_lines = true
+-- vim.o.winborder = "rounded"
+-- vim.o.winborder = "bold"
 
-  -- Alternatively, customize specific options
-  -- virtual_lines = {
-  --  -- Only show virtual line diagnostics for the current cursor line
-  --  current_line = true,
-  -- },
+vim.diagnostic.config({
+	virtual_text = true,
+	-- 	virtual_lines = { current_line = true },
+	jump = {
+		float = true,
+	},
+	underline = true,
+	update_in_insert = false,
+	float = {
+		-- border = "rounded",
+	},
 })

@@ -1,58 +1,57 @@
 {
-  "$schema" : "https:\/\/schema.linearmouse.app\/0.10.0",
   "schemes" : [
     {
-      "pointer" : {
-        "acceleration" : 0.5,
-        "disableAcceleration" : false,
-        "speed" : 0.08
-      },
       "if" : {
         "device" : {
-          "category" : "mouse",
-          "productName" : "MX Master 3",
-          "productID" : "0xb023",
           "vendorID" : "0x46d",
-          "serialNumber" : "7753F8D9F13E7B6D"
+          "serialNumber" : "7753F8D9F13E7B6D",
+          "productID" : "0xb023",
+          "productName" : "MX Master 3",
+          "category" : "mouse"
         }
       },
       "scrolling" : {
-        "acceleration" : {
-          "vertical" : 1,
-          "horizontal" : 3
-        },
-        "reverse" : {
-          "horizontal" : true
-        },
         "distance" : {
           "vertical" : "auto"
         },
-        "speed" : 0
+        "speed" : 0,
+        "reverse" : {
+          "horizontal" : true
+        },
+        "acceleration" : {
+          "horizontal" : 3,
+          "vertical" : 1
+        }
+      },
+      "pointer" : {
+        "speed" : 0.08,
+        "disableAcceleration" : false,
+        "acceleration" : 0.5
       }
     },
     {
-      "pointer" : {
-        "acceleration" : 0.6875,
-        "disableAcceleration" : false,
-        "speed" : 0
-      },
       "if" : {
         "device" : {
           "productID" : "0x269",
-          "vendorID" : "0x4c",
-          "productName" : "Magic Mouse",
           "serialNumber" : "c4-0b-31-00-67-db",
-          "category" : "mouse"
+          "category" : "mouse",
+          "vendorID" : "0x4c",
+          "productName" : "Magic Mouse"
         }
+      },
+      "pointer" : {
+        "disableAcceleration" : false,
+        "acceleration" : 0.6875,
+        "speed" : 0
       }
     },
     {
       "if" : {
         "device" : {
-          "productName" : "Apple Internal Keyboard \/ Trackpad",
-          "category" : "trackpad",
+          "productID" : "0x341",
           "vendorID" : "0x5ac",
-          "productID" : "0x341"
+          "productName" : "Apple Internal Keyboard \/ Trackpad",
+          "category" : "trackpad"
         }
       },
       "scrolling" : {
@@ -60,39 +59,38 @@
       }
     },
     {
-      "pointer" : {
-        "speed" : 0.08,
-        "acceleration" : 0.5
-      },
       "if" : {
         "device" : {
-          "productID" : "0xb034",
           "vendorID" : "0x46d",
-          "productName" : "MX Master 3S",
+          "serialNumber" : "67F5F1CE",
           "category" : "mouse",
-          "serialNumber" : "67F5F1CE"
+          "productID" : "0xb034",
+          "productName" : "MX Master 3S"
         }
       },
       "scrolling" : {
         "reverse" : {
           "horizontal" : true
         }
+      },
+      "pointer" : {
+        "speed" : 0.08,
+        "acceleration" : 0.5
       }
     },
     {
       "if" : {
         "device" : {
-          "category" : "trackpad",
-          "productID" : "0x0",
+          "productName" : "Apple Internal Keyboard \/ Trackpad",
           "vendorID" : "0x0",
-          "productName" : "Apple Internal Keyboard \/ Trackpad"
+          "category" : "trackpad",
+          "productID" : "0x0"
         }
       },
       "scrolling" : {
-        "reverse" : {
-          "vertical" : true
-        }
+        "reverse" : true
       }
     }
-  ]
+  ],
+  "$schema" : "https:\/\/schema.linearmouse.app\/0.10.0"
 }
