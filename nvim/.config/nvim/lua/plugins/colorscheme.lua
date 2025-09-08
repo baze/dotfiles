@@ -3,10 +3,19 @@ return {
 		"catppuccin/nvim",
 		name = "catppuccin",
 		priority = 1000,
-		opts = {
-			flavour = "macchiato", -- latte, frappe, macchiato, mocha
-			transparent_background = false,
-		},
+		opts = function(_, opts)
+			-- merge your own settings into opts
+			opts.flavour = "macchiato" -- latte, frappe, macchiato, mocha
+			opts.transparent_background = false
+
+			-- bufferline integration fix
+			local ok, bufferline = pcall(require, "catppuccin.groups.integrations.bufferline")
+			if ok and bufferline then
+				bufferline.get = bufferline.get_theme
+			end
+
+			return opts
+		end,
 	},
 	-- {
 	-- 	"rebelot/kanagawa.nvim",
