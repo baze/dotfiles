@@ -2,30 +2,180 @@
 # merge_descriptions.sh — builds:
 #   - description_writing.md (no lighting)
 #   - description_images.md  (with lighting)
+#
+# macOS/Bash 3.2 compatible:
+# - No associative arrays
+# - No ${var^^} capitalization
+# - Guard all expansions for set -u safety
 
 set -euo pipefail
 
-ORDER=(face body wardrobe hair lighting)
+# Canonical order for the full (images) build
+ORDER=(basic_info face accessories hair body wardrobe lighting)
 
-merge_all() {
-  local out="$1"; shift
-  local parts=("$@")
+# Derive the writing order by dropping "lighting" to avoid drift
+ORDER_WRITING=()
+for x in "${ORDER[@]}"; do
+	[[ "$x" != "lighting" ]] && ORDER_WRITING+=("$x")
+done
 
-  : > "$out"
-  for part in "${parts[@]}"; do
-    local f="description_${part}.md"
-    if [[ -f "$f" ]]; then
-      header="$(printf '%s' "$part" | tr '[:lower:]' '[:upper:]')"
-      printf "<!-- BEGIN %s -->\n\n" "$header" >> "$out"
-      cat "$f" >> "$out"
-      printf "\n\n" >> "$out"
-    fi
-  done
-  echo "Merged → $out"
+# ---------- Helpers -----------------------------------------------------------
+
+label_for() {
+	case "${1:-}" in
+	basic_info) echo "Basic Information" ;;
+	face) echo "Face" ;;
+	accessories) echo "Accessories & Makeup" ;;
+	hair) echo "Hair" ;;
+	body) echo "Body" ;;
+	wardrobe) echo "Wardrobe" ;;
+	lighting) echo "Lighting" ;;
+	*) echo "${1:-Section}" ;;
+	esac
 }
 
-# 1) Writing: no lighting
-merge_all "description_writing.md" face body wardrobe hair
+toupper() {
+	printf '%s' "${1:-}" | tr '[:lower:]' '[:upper:]'
+}
 
-# 2) Images: include lighting
-merge_all "description_images.md" "${ORDER[@]}"
+extract_version() {
+	local file="${1:-}"
+	[[ -f "$file" ]] || {
+		echo ""
+		return 0
+	}
+	grep -oE 'v[0-9]+([.][0-9]+)*' "$file" | head -n 1 || true
+}
+
+src_for_part() {
+	local part="${1:-}"
+	if [[ "$part" = "basic_info" ]]; then
+		printf '%s' "basic_info.md"
+	else
+		printf 'description_%s.md' "$part"
+	fi
+}
+
+build_use_line() {
+	local current="${1:-}"
+	shift || true
+	local out_kind="${1:-}"
+	shift || true
+
+	local items=()
+	local pv part ver lbl
+	for pv in "$@"; do
+		[[ -n "${pv:-}" ]] || continue
+		part="${pv%%:*}"
+		ver="${pv#*:}"
+
+		[[ "$part" = "$current" ]] && continue
+		if [[ "$out_kind" = "writing" && "$part" = "lighting" ]]; then
+			continue
+		fi
+
+		lbl="$(label_for "$part")"
+		if [[ -n "${ver:-}" ]]; then
+			items+=("${lbl} (${ver})")
+		else
+			items+=("${lbl} (v11.17+)")
+		fi
+	done
+
+	((${#items[@]} > 0)) || {
+		echo ""
+		return 0
+	}
+
+	local use_text=""
+	if ((${#items[@]} == 1)); then
+		use_text="${items[0]}"
+	else
+		local last="${items[${#items[@]} - 1]}"
+		# shellcheck disable=SC2206
+		local lead=("${items[@]:0:${#items[@]}-1}")
+		use_text="$(printf "%s, " "${lead[@]}")and ${last}"
+	fi
+
+	# echo "**Use:** Pair with the ${use_text} sections from this file."
+}
+
+render_section() {
+	local out_file="${1:-}"
+	shift || true
+	local part="${1:-}"
+	shift || true
+	local out_kind="${1:-}"
+	shift || true
+	local src
+	src="$(src_for_part "$part")"
+
+	[[ -f "$src" ]] || return 0
+
+	local use_line
+	use_line="$(build_use_line "$part" "$out_kind" "$@")"
+
+	local header
+	header="$(toupper "$(label_for "$part")")"
+
+	{
+		printf "<!-- BEGIN %s -->\n\n" "$header"
+		if [[ -n "${use_line:-}" ]]; then
+			awk -v UL="$use_line" '
+        BEGIN { replaced=0 }
+        {
+          if (!replaced && $0 ~ /^\*\*Use:\*\*/) {
+            print UL
+            replaced=1
+          } else {
+            print $0
+          }
+        }
+        END {
+          if (!replaced) {
+            print ""
+            print UL
+          }
+        }
+      ' "$src"
+		else
+			cat "$src"
+		fi
+		printf "\n<!-- END %s -->\n\n" "$header"
+	} >>"$out_file"
+
+	echo "✓ Included $src"
+}
+
+merge_all() {
+	local out_file="${1:-}"
+	shift || true
+	local out_kind="${1:-}"
+	shift || true
+
+	: >"$out_file"
+
+	local p f v
+	local part_versions=()
+	for p in "$@"; do
+		f="$(src_for_part "$p")"
+		if [[ -f "$f" ]]; then
+			v="$(extract_version "$f")"
+			part_versions+=("${p}:${v}")
+		fi
+	done
+
+	for p in "$@"; do
+		render_section "$out_file" "$p" "$out_kind" "${part_versions[@]}"
+	done
+
+	echo "Merged → $out_file"
+}
+
+# ---------- Builds ------------------------------------------------------------
+
+echo "=== Building description_writing.md ==="
+merge_all "description_writing.md" "writing" "${ORDER_WRITING[@]}"
+
+echo "=== Building description_images.md ==="
+merge_all "description_images.md" "images" "${ORDER[@]}"
