@@ -14,12 +14,16 @@
 set -euo pipefail
 
 # Canonical order for the full (images) build
-ORDER=(basic_info morphology face accessories hair body wardrobe lighting)
+# ADDED: "camera" as the final section
+ORDER=(basic_info morphology face accessories hair body wardrobe lighting camera)
 
-# Derive the writing order by dropping "lighting" to avoid drift
+# Derive the writing order by dropping "lighting" (and now "camera") to avoid drift
 ORDER_WRITING=()
 for x in "${ORDER[@]}"; do
-	[[ "$x" != "lighting" ]] && ORDER_WRITING+=("$x")
+	# MODIFIED: also skip "camera" for writing
+	if [[ "$x" != "lighting" && "$x" != "camera" ]]; then
+		ORDER_WRITING+=("$x")
+	fi
 done
 
 # ---------- Helpers -----------------------------------------------------------
@@ -34,6 +38,8 @@ label_for() {
 	body) echo "Body" ;;
 	wardrobe) echo "Wardrobe" ;;
 	lighting) echo "Lighting" ;;
+	# ADDED: label for camera section
+	camera) echo "Camera" ;;
 	*) echo "${1:-Section}" ;;
 	esac
 }
@@ -55,6 +61,16 @@ src_for_part() {
 	local part="${1:-}"
 	if [[ "$part" = "basic_info" ]]; then
 		printf '%s' "basic_info.md"
+	# ADDED: camera resolution (local override > shared > default)
+	elif [[ "$part" = "camera" ]]; then
+		if [[ -f "description_camera.md" ]]; then
+			printf '%s' "description_camera.md"
+		elif [[ -f "../_shared/description_camera.md" ]]; then
+			printf '%s' "../_shared/description_camera.md"
+		else
+			# Fallback path; render_section will skip if it doesn't exist
+			printf '%s' "description_camera.md"
+		fi
 	else
 		printf 'description_%s.md' "$part"
 	fi
