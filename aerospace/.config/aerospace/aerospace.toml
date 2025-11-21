@@ -193,15 +193,15 @@ run = "move-node-to-workspace 6"
 
 [[on-window-detected]]
 if.app-id = 'com.fournova.Tower3'
-run = "move-node-to-workspace 9"
+run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
 if.app-id = 'com.luckymarmot.Paw'
-run = "move-node-to-workspace 9"
+run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
 if.app-id = 'com.tinyapp.TablePlus-setapp'
-run = "move-node-to-workspace 9"
+run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
 if.app-id = 'com.liuliu.draw-things'

@@ -2,6 +2,9 @@
 # merge_descriptions.sh — builds:
 #   - description_writing.md (no lighting)
 #   - description_images.md  (with lighting)
+#   and minified variants:
+#   - description_writing.min.md
+#   - description_images.min.md
 #
 # macOS/Bash 3.2 compatible:
 # - No associative arrays
@@ -11,7 +14,7 @@
 set -euo pipefail
 
 # Canonical order for the full (images) build
-ORDER=(basic_info face accessories hair body wardrobe lighting)
+ORDER=(basic_info morphology face accessories hair body wardrobe lighting)
 
 # Derive the writing order by dropping "lighting" to avoid drift
 ORDER_WRITING=()
@@ -24,6 +27,7 @@ done
 label_for() {
 	case "${1:-}" in
 	basic_info) echo "Basic Information" ;;
+	morphology) echo "morphology" ;;
 	face) echo "Face" ;;
 	accessories) echo "Accessories & Makeup" ;;
 	hair) echo "Hair" ;;
@@ -172,6 +176,51 @@ merge_all() {
 	echo "Merged → $out_file"
 }
 
+# ---------- Minifier ----------------------------------------------------------
+
+# Minify Markdown into a compact prompt-safe form:
+# - Remove HTML comments <!-- ... -->
+# - Trim leading/trailing whitespace
+# - Collapse internal runs of spaces/tabs to a single space
+# - Drop empty lines
+# - Preserve code blocks (``` ... ```)
+minify_file() {
+	local in="${1:-}"
+	local out="${2:-}"
+	awk '
+BEGIN { in_code=0 }
+/^```/ { print; in_code = !in_code; next }
+{
+  if (in_code) { print; next }
+
+  # strip HTML comments (single-line)
+  gsub(/<!--[^>]*-->/, "", $0)
+
+  # capture leading indentation
+  match($0, /^[ \t]*/)
+  indent = substr($0, RSTART, RLENGTH)
+
+  # work on the rest of the line as "line"
+  line = $0
+  sub(/^[ \t]*/, "", line)      # remove leading spaces from content
+  sub(/[ \t]+$/, "", line)      # trim trailing spaces
+
+  if (line == "") next          # drop empty lines after trimming
+
+  gsub(/[ \t]+/, " ", line)     # collapse internal runs of spaces
+
+  print indent line             # re-attach original indentation
+}' "$in" >"$out"
+
+	# report size savings
+	if command -v wc >/dev/null 2>&1; then
+		local a b
+		a=$(wc -c <"$in" | tr -d '[:space:]')
+		b=$(wc -c <"$out" | tr -d '[:space:]')
+		printf "Minified %s → %s (bytes: %s → %s, saved: %s)\n" "$in" "$out" "$a" "$b" "$((a - b))"
+	fi
+}
+
 # ---------- Builds ------------------------------------------------------------
 
 echo "=== Building description_writing.md ==="
@@ -179,3 +228,9 @@ merge_all "description_writing.md" "writing" "${ORDER_WRITING[@]}"
 
 echo "=== Building description_images.md ==="
 merge_all "description_images.md" "images" "${ORDER[@]}"
+
+echo "=== Minifying outputs ==="
+minify_file "description_writing.md" "description_writing.min.md"
+minify_file "description_images.md" "description_images.min.md"
+
+echo "Done."
