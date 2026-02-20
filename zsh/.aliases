@@ -180,3 +180,24 @@ t() {
     dir=$(zoxide query -- "$1" 2>/dev/null) || dir="$1"
     sesh connect "$dir"
 }
+
+update_open_webui() {
+  set -e
+
+  echo "→ Changing to Open WebUI directory..."
+  cd ~/AI/open-webui || { echo "Directory ~/AI/open-webui not found"; return 1; }
+
+  echo "→ Pulling latest Open WebUI image..."
+  docker pull ghcr.io/open-webui/open-webui:main
+
+  echo "→ Bringing stack up (removing orphans)..."
+  docker-compose up -d --remove-orphans
+
+  echo "→ Stopping open-webui container..."
+  docker stop open-webui || true
+
+  echo "→ Pruning unused images..."
+  docker image prune -f
+
+  echo "✓ Open WebUI update sequence finished."
+}
