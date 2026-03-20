@@ -88,3 +88,8 @@ export PATH=$HOME/bin:$PATH
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/b.martensen/.lmstudio/bin"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/bjoernmartensen/.lmstudio/bin"
+# End of LM Studio CLI section
+
