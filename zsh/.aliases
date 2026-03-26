@@ -191,7 +191,7 @@ update_open_webui() {
   docker pull ghcr.io/open-webui/open-webui:main
 
   echo "→ Bringing stack up (removing orphans)..."
-  docker-compose up -d --remove-orphans
+  docker compose up -d --remove-orphans
 
   echo "→ Stopping open-webui container..."
   docker stop open-webui || true
