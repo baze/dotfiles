@@ -93,3 +93,4 @@ export PATH="$PATH:/Users/b.martensen/.lmstudio/bin"
 export PATH="$PATH:/Users/bjoernmartensen/.lmstudio/bin"
 # End of LM Studio CLI section
 
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
