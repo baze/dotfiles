@@ -1,0 +1,10 @@
+model: ollama:gemma4:26b
+
+clients:
+    - type: openai-compatible
+      name: ollama
+      api_base: http://bjoerns-mac-mini.local:11434/v1
+      api_key: ollama
+      models:
+          - name: gemma4:26b
+            max_input_tokens: 131072
