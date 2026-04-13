@@ -1,0 +1,26 @@
+{
+	"$schema": "https://opencode.ai/config.json",
+	"provider": {
+		"ollama": {
+			"name": "M4 Mini (Gemma 4)",
+			"options": {
+				// Pointing to your Mini's .local address
+				"baseURL": "http://bjoerns-mac-mini.local:11434/v1",
+				"textVerbosity": "medium",
+			},
+			"models": {
+				"gemma4:26b": {
+					"name": "Gemma 4 (26B MoE)",
+					"limit": {
+						"context": 128000,
+						"output": 8192,
+					},
+					"modalities": {
+						"input": ["text", "image"],
+						"output": ["text"],
+					},
+				},
+			},
+		},
+	},
+}
