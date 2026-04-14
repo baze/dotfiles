@@ -37,6 +37,8 @@ if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
 fi
 
+export TERM=xterm-256color
+
 # History
 HISTSIZE=5000
 HISTFILE=$HOME/.zsh_history
@@ -94,3 +96,5 @@ export PATH="$PATH:/Users/bjoernmartensen/.lmstudio/bin"
 # End of LM Studio CLI section
 
 source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+
+source /Users/b.martensen/.config/broot/launcher/bash/br
