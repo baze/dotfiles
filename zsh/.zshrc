@@ -98,3 +98,8 @@ export PATH="$PATH:/Users/bjoernmartensen/.lmstudio/bin"
 source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 
 source /Users/b.martensen/.config/broot/launcher/bash/br
+
+export DYLD_LIBRARY_PATH=$HOME/build/lib/ollama:$DYLD_LIBRARY_PATH
+export OLLAMA_MLX=1
+
+. "$HOME/.local/bin/env"
