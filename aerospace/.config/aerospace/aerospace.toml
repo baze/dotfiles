@@ -254,3 +254,7 @@ run = ['layout floating']
 [[on-window-detected]]
 if.app-id = 'com.apple.ScreenSharing'
 run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Siri'
+run = ['layout floating']

@@ -201,3 +201,6 @@ update_open_webui() {
 
   echo "✓ Open WebUI update sequence finished."
 }
+
+alias claude-work="CLAUDE_CONFIG_DIR=~/.claude-work claude"
+alias claude-personal="CLAUDE_CONFIG_DIR=~/.claude-personal claude"

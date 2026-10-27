@@ -88,10 +88,10 @@ export VISUAL=nvim
 export PATH=$HOME/bin:$PATH
 
 # Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/b.martensen/.lmstudio/bin"
+export PATH="$PATH:$HOME/.lmstudio/bin"
 
 # Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/bjoernmartensen/.lmstudio/bin"
+export PATH="$PATH:$HOME/.lmstudio/bin"
 # End of LM Studio CLI section
 
 source /Users/b.martensen/.config/broot/launcher/bash/br
@@ -99,4 +99,4 @@ source /Users/b.martensen/.config/broot/launcher/bash/br
 export DYLD_LIBRARY_PATH=$HOME/build/lib/ollama:$DYLD_LIBRARY_PATH
 export OLLAMA_MLX=1
 
-. "$HOME/.local/bin/env"
+ # . "$HOME/.local/bin/env"

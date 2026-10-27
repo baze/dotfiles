@@ -1,0 +1,30 @@
+{
+	"$schema": "https://opencode.ai/config.json",
+	// Tells OpenCode to use your local model by default
+	"model": "ollama/senior-coder",
+	"provider": {
+		"ollama": {
+			"npm": "@ai-sdk/openai-compatible",
+			"name": "M4 Mini (Local)",
+			"options": {
+				// Pointing to your specific Mac Mini address
+				"baseURL": "http://192.168.1.169:11434/v1",
+			},
+			"models": {
+				"senior-coder": {
+					"name": "Gemma 4 Senior Coder",
+					"limit": {
+						"context": 65536,
+						"output": 8192,
+					},
+				},
+			},
+		},
+	},
+	// Optional: Set permissions so it doesn't ask you for every single file
+	"permission": {
+		"edit": "allow",
+		"bash": "ask",
+		"read": "allow",
+	},
+}
