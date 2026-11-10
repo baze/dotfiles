@@ -1,0 +1,50 @@
+#!/usr/bin/env -S python3 -I
+"""Sync Rex's app settings (fonts, theme, panes, tabs) through dotfiles.
+
+  rex-settings export   copy the shareable settings to settings.plist
+  rex-settings import   merge settings.plist into this Mac's Rex settings
+
+Only Workspace.* keys are shared. Window positions, sessions, server and
+update state stay on each Mac.
+"""
+import os
+import plistlib
+import subprocess
+import sys
+
+DOMAIN = "com.superlogical.rex"
+FILE = os.path.expanduser("~/dotfiles/rex/.config/rex/settings.plist")
+SKIP = {"Workspace.lastFocusedSession", "Workspace.programActivitySeen"}
+
+
+def read_domain():
+    out = subprocess.run(["defaults", "export", DOMAIN, "-"], capture_output=True, check=True).stdout
+    return plistlib.loads(out) if out else {}
+
+
+def rex_running():
+    return subprocess.run(["pgrep", "-f", r"/Rex[^/]*\.app/Contents/MacOS/Rex$"], capture_output=True).returncode == 0
+
+
+def export():
+    settings = {k: v for k, v in read_domain().items() if k.startswith("Workspace.") and k not in SKIP}
+    with open(FILE, "wb") as f:
+        plistlib.dump(settings, f, sort_keys=True)
+    print(f"exported {len(settings)} settings to {FILE}")
+
+
+def import_():
+    if rex_running():
+        sys.exit("quit Rex first, it would overwrite the imported settings when it quits")
+    with open(FILE, "rb") as f:
+        settings = plistlib.load(f)
+    # defaults import replaces the whole domain, so merge into what is there
+    merged = read_domain() | settings
+    subprocess.run(["defaults", "import", DOMAIN, "-"], input=plistlib.dumps(merged), check=True)
+    print(f"imported {len(settings)} settings from {FILE}")
+
+
+commands = {"export": export, "import": import_}
+if len(sys.argv) != 2 or sys.argv[1] not in commands:
+    sys.exit(__doc__.strip())
+commands[sys.argv[1]]()
