@@ -85,13 +85,11 @@ export VISUAL=nvim
 
 # export PATH=./node_modules/.bin:$PATH
 # export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
-export PATH=$HOME/bin:$PATH
+export PATH="$HOME/dotfiles/bin:$HOME/bin:$PATH"
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:$HOME/.lmstudio/bin"
 
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:$HOME/.lmstudio/bin"
 # End of LM Studio CLI section
 
 source /Users/b.martensen/.config/broot/launcher/bash/br
@@ -100,3 +98,4 @@ export DYLD_LIBRARY_PATH=$HOME/build/lib/ollama:$DYLD_LIBRARY_PATH
 export OLLAMA_MLX=1
 
  # . "$HOME/.local/bin/env"
+
