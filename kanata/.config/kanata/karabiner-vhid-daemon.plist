@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  LaunchDaemon for the Karabiner VirtualHIDDevice daemon.
+
+  Needed because the standalone Karabiner-DriverKit-VirtualHIDDevice package is
+  installed without Karabiner-Elements, which would otherwise manage the daemon.
+  Without it kanata starts but has no output sink, and logs
+  "connect_failed asio.system:2" in a loop.
+
+  This file lives in dotfiles for version control; the live copy is a plain copy
+  at /Library/LaunchDaemons (root-owned, so not a stow symlink -- launchd
+  refuses a plist that is writable by a non-root user).
+
+  Install:
+    sudo cp ~/.config/kanata/karabiner-vhid-daemon.plist \
+      /Library/LaunchDaemons/org.pqrs.Karabiner-VirtualHIDDevice-Daemon.plist
+    sudo chown root:wheel \
+      /Library/LaunchDaemons/org.pqrs.Karabiner-VirtualHIDDevice-Daemon.plist
+    sudo launchctl bootstrap system \
+      /Library/LaunchDaemons/org.pqrs.Karabiner-VirtualHIDDevice-Daemon.plist
+
+  Uninstall:
+    sudo launchctl bootout system/org.pqrs.Karabiner-VirtualHIDDevice-Daemon
+    sudo rm /Library/LaunchDaemons/org.pqrs.Karabiner-VirtualHIDDevice-Daemon.plist
+-->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>org.pqrs.Karabiner-VirtualHIDDevice-Daemon</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Library/Application Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice/Applications/Karabiner-VirtualHIDDevice-Daemon.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Daemon</string>
+    </array>
+
+    <key>UserName</key>
+    <string>root</string>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <true/>
+
+    <key>StandardOutPath</key>
+    <string>/var/log/karabiner-vhid-daemon.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/var/log/karabiner-vhid-daemon.log</string>
+</dict>
+</plist>

@@ -1,0 +1,57 @@
+;; ---------------------------------------------------------------------------
+;; kanata -- MacBook internal keyboard only
+;;
+;; Mirrors the homerow mods of the Adv360 Pro (ZMK) so typing feels the same
+;; docked and undocked. The Kinesis is deliberately not listed in
+;; macos-dev-names-include, so its own firmware stays in charge and nothing
+;; gets applied twice.
+;;
+;; Run:   sudo kanata --cfg ~/.config/kanata/kanata.kbd
+;; Names: sudo kanata --list   (prints the exact device names)
+;; ---------------------------------------------------------------------------
+
+(defcfg
+  macos-dev-names-include ("Apple Internal Keyboard / Trackpad")
+  process-unmapped-keys yes
+  concurrent-tap-hold yes
+)
+
+(defvar
+  ;; ZMK: tapping-term-ms
+  tap-time 200
+  hold-time 200
+
+  ;; Same-hand keys. Pressing one of these while a homerow key is held resolves
+  ;; that key to its letter. This is the counterpart to ZMK's
+  ;; hold-trigger-key-positions: mods only fire on cross-hand combinations,
+  ;; which is what keeps fast rolls from turning into modifiers.
+  left-keys  (q w e r t a s d f g z x c v b)
+  right-keys (y u i o p h j k l ; n m , . /)
+)
+
+(defsrc
+  caps
+  a s d f  j k l ;
+)
+
+(defalias
+  ;; Caps Lock: Super (Shift+Ctrl+Opt). Held modifier only, no tap action.
+  cap (multi lsft lctl lalt)
+
+  ;; Homerow mods, pinky -> index: Ctrl Opt Cmd Shift (as on the Adv360)
+  a (tap-hold-release-keys $tap-time $hold-time a lctl $left-keys)
+  s (tap-hold-release-keys $tap-time $hold-time s lalt $left-keys)
+  d (tap-hold-release-keys $tap-time $hold-time d lmet $left-keys)
+  f (tap-hold-release-keys $tap-time $hold-time f lsft $left-keys)
+
+  j (tap-hold-release-keys $tap-time $hold-time j rsft $right-keys)
+  k (tap-hold-release-keys $tap-time $hold-time k rmet $right-keys)
+  l (tap-hold-release-keys $tap-time $hold-time l ralt $right-keys)
+  ;; alias name for the semicolon key
+  sc (tap-hold-release-keys $tap-time $hold-time ; rctl $right-keys)
+)
+
+(deflayer base
+  @cap
+  @a @s @d @f  @j @k @l @sc
+)

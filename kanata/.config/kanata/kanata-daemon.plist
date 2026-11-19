@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  LaunchDaemon for kanata.
+
+  Runs as root under launchd rather than from a terminal on purpose: macOS
+  evaluates Accessibility against the *responsible process*, which for a
+  sudo'd binary is the terminal app, not the binary. Under launchd kanata is
+  its own responsible process, so its own TCC grant applies. Started from a
+  shell with sudo it fails with "Accessibility permission not yet granted"
+  even though the grant exists.
+
+  The binary is a frozen copy at /opt/kanata/bin, not the Homebrew one. TCC
+  pins grants to the binary's cdhash, so every new build needs re-approval;
+  running a copy means `brew upgrade kanata` cannot break the running setup.
+
+  Install the binary (root-owned, not user-writable):
+    sudo mkdir -p /opt/kanata/bin
+    sudo cp /opt/homebrew/bin/kanata /opt/kanata/bin/kanata
+    sudo chown -R root:wheel /opt/kanata
+    sudo chmod -R go-w /opt/kanata
+
+  Then grant /opt/kanata/bin/kanata both Accessibility and Input Monitoring.
+
+  Install the daemon:
+    sudo cp ~/.config/kanata/kanata-daemon.plist \
+      /Library/LaunchDaemons/com.github.jtroo.kanata.plist
+    sudo chown root:wheel /Library/LaunchDaemons/com.github.jtroo.kanata.plist
+    sudo launchctl bootstrap system /Library/LaunchDaemons/com.github.jtroo.kanata.plist
+
+  Uninstall:
+    sudo launchctl bootout system/com.github.jtroo.kanata
+    sudo rm /Library/LaunchDaemons/com.github.jtroo.kanata.plist
+
+  After upgrading: re-run the cp above, re-approve in both privacy panes, then
+    sudo launchctl kickstart -k system/com.github.jtroo.kanata
+-->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.github.jtroo.kanata</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/opt/kanata/bin/kanata</string>
+        <string>--no-wait</string>
+        <string>--cfg</string>
+        <string>/Users/b.martensen/.config/kanata/kanata.kbd</string>
+    </array>
+
+    <key>UserName</key>
+    <string>root</string>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <true/>
+
+    <key>StandardOutPath</key>
+    <string>/var/log/kanata.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/var/log/kanata.log</string>
+</dict>
+</plist>
