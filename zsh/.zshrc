@@ -92,7 +92,7 @@ export PATH="$PATH:$HOME/.lmstudio/bin"
 
 # End of LM Studio CLI section
 
-source /Users/b.martensen/.config/broot/launcher/bash/br
+source "$HOME/.config/broot/launcher/bash/br"
 
 export DYLD_LIBRARY_PATH=$HOME/build/lib/ollama:$DYLD_LIBRARY_PATH
 export OLLAMA_MLX=1
